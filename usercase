@@ -1,0 +1,418 @@
+📋 BACKLOG
+US01 – Inspectieopdracht toevoegen
+
+User Story:
+Als planner wil ik een inspectieopdracht kunnen toevoegen, zodat deze ingepland kan worden.
+
+Acceptatiecriteria:
+
+Adres kan worden ingevoerd
+Klant kan worden gekoppeld
+Inspectietype kan worden gekozen
+Datum/deadline kan worden ingevoerd
+Tijdsvenster kan worden ingevoerd
+Opdracht krijgt een status
+
+Checklist:
+
+ Database
+ Backend/API
+ Formulier
+ Validatie
+ Testen
+US02 – Klanten en locaties beheren
+
+User Story:
+Als planner wil ik klanten en hun locaties kunnen beheren, zodat inspectieopdrachten aan de juiste locatie gekoppeld zijn.
+
+Acceptatiecriteria:
+
+Klant toevoegen
+Klant wijzigen
+Klant bekijken
+Locatie toevoegen
+Locatie wijzigen
+Locatie aan klant koppelen
+US03 – Inspectietypes beheren
+
+User Story:
+Als planner wil ik verschillende inspectietypes kunnen beheren, zodat het systeem weet welke werkzaamheden uitgevoerd moeten worden.
+
+Voorbeelden:
+
+Jaarlijkse controle
+Tankkeuring
+Herkeuring
+Kathodische bescherming
+Ultrasoon onderzoek
+DCVG-meting
+
+Acceptatiecriteria:
+
+Inspectietype toevoegen
+Inspectietype wijzigen
+Geschatte duur instellen
+Benodigde certificaten/apparatuur kunnen koppelen
+US04 – Inspecteurs beheren
+
+User Story:
+Als planner wil ik inspecteurs kunnen beheren, zodat opdrachten aan beschikbare inspecteurs gekoppeld kunnen worden.
+
+Acceptatiecriteria:
+
+Inspecteur toevoegen
+Inspecteur wijzigen
+Beschikbaarheid instellen
+Werkgebied/startlocatie instellen
+Actief/inactief instellen
+US05 – Certificaten van inspecteurs beheren
+
+User Story:
+Als planner wil ik kunnen zien welke certificaten een inspecteur heeft, zodat alleen geschikte inspecteurs voor een opdracht worden ingepland.
+
+Acceptatiecriteria:
+
+Certificaat toevoegen
+Certificaat koppelen aan inspecteur
+Geldigheidsdatum opslaan
+Vereist certificaat koppelen aan inspectietype
+Ongeldige certificaten herkennen
+US06 – Apparatuur beheren
+
+User Story:
+Als planner wil ik beschikbare apparatuur kunnen beheren, zodat dezelfde apparatuur niet tegelijkertijd voor meerdere opdrachten wordt ingepland.
+
+Acceptatiecriteria:
+
+Apparatuur toevoegen
+Apparatuur wijzigen
+Apparatuur koppelen aan inspectietype
+Beschikbaarheid controleren
+US07 – Inspectieopdrachten bekijken
+
+User Story:
+Als planner wil ik alle openstaande inspectieopdrachten kunnen bekijken, zodat ik overzicht heb over het werk.
+
+Acceptatiecriteria:
+
+Lijst met opdrachten
+Filter op datum
+Filter op status
+Filter op inspectietype
+Filter op klant
+Deadline zichtbaar
+US08 – Naderende keuringen tonen
+
+User Story:
+Als planner wil ik kunnen zien welke keuringen binnenkort verlopen, zodat deze op tijd ingepland kunnen worden.
+
+Acceptatiecriteria:
+
+Volgende keuringsdatum opslaan
+Keuringen sorteren op datum
+Naderende deadlines duidelijk tonen
+Verlopen keuringen tonen
+🗺️ ROUTEPLANNING
+US09 – Beschikbare inspecteurs selecteren
+
+User Story:
+Als planner wil ik voor een bepaalde dag beschikbare inspecteurs kunnen selecteren, zodat ik een route voor hen kan maken.
+
+Acceptatiecriteria:
+
+Datum kiezen
+Beschikbare inspecteurs tonen
+Inspecteur selecteren/deselecteren
+US10 – Opdrachten selecteren voor route
+
+User Story:
+Als planner wil ik opdrachten kunnen selecteren voor een bepaalde dag, zodat deze meegenomen worden in de route.
+
+Acceptatiecriteria:
+
+Opdrachten selecteren
+Opdrachten aan inspecteur koppelen
+Alleen geschikte opdrachten kunnen worden geselecteerd
+US11 – Adressen omzetten naar coördinaten
+
+User Story:
+Als systeem wil ik adressen kunnen omzetten naar GPS-coördinaten, zodat routes berekend kunnen worden.
+
+Acceptatiecriteria:
+
+Adres wordt gecontroleerd
+Latitude en longitude worden opgeslagen
+Ongeldig adres geeft een foutmelding
+US12 – Afstanden en reistijden berekenen
+
+User Story:
+Als systeem wil ik de afstand en reistijd tussen locaties kunnen berekenen, zodat een efficiënte route gemaakt kan worden.
+
+Acceptatiecriteria:
+
+Afstand tussen locaties berekenen
+Reistijd berekenen
+Resultaat beschikbaar voor routeplanner
+US13 – Automatische route berekenen
+
+User Story:
+Als planner wil ik automatisch een optimale route kunnen laten berekenen, zodat inspecteurs zo efficiënt mogelijk kunnen rijden.
+
+Acceptatiecriteria:
+
+Meerdere opdrachten kunnen worden ingepland
+Systeem bepaalt volgorde
+Reistijd wordt meegenomen
+Route wordt per inspecteur berekend
+US14 – Rekening houden met tijdvensters
+
+User Story:
+Als planner wil ik dat de route rekening houdt met afgesproken tijdvensters, zodat inspecteurs op tijd bij klanten aankomen.
+
+Acceptatiecriteria:
+
+Starttijd opslaan
+Eindtijd opslaan
+Route controleert tijdvensters
+Conflicten worden aangegeven
+US15 – Rekening houden met inspectieduur
+
+User Story:
+Als planner wil ik dat de duur van een inspectie wordt meegenomen in de planning, zodat de planning realistisch is.
+
+Acceptatiecriteria:
+
+Inspectieduur per type instellen
+Duur meenemen in planning
+Verwachte aankomsttijd tonen
+Verwachte vertrektijd tonen
+US16 – Route op kaart tonen
+
+User Story:
+Als planner wil ik de geplande route op een kaart kunnen bekijken, zodat ik snel kan controleren of de planning logisch is.
+
+Acceptatiecriteria:
+
+Kaart zichtbaar
+Alle locaties zichtbaar
+Route als lijn zichtbaar
+Stops genummerd
+Inspecteur herkenbaar
+US17 – Route handmatig aanpassen
+
+User Story:
+Als planner wil ik de volgorde van stops handmatig kunnen aanpassen, zodat ik zelf wijzigingen kan maken wanneer dat nodig is.
+
+Acceptatiecriteria:
+
+Stops kunnen worden verplaatst
+Nieuwe volgorde wordt opgeslagen
+Reistijden worden opnieuw berekend
+Conflicten worden aangegeven
+US18 – Route opslaan
+
+User Story:
+Als planner wil ik een berekende route kunnen opslaan, zodat de inspecteur deze later kan bekijken.
+
+Acceptatiecriteria:
+
+Route krijgt datum
+Route krijgt inspecteur
+Stops worden opgeslagen
+Route kan later opnieuw worden geopend
+📱 INSPECTEUR
+US19 – Dagplanning bekijken
+
+User Story:
+Als inspecteur wil ik mijn dagplanning kunnen bekijken, zodat ik weet welke opdrachten ik moet uitvoeren.
+
+Acceptatiecriteria:
+
+Vandaag tonen
+Opdrachten in juiste volgorde
+Adres tonen
+Tijd tonen
+Inspectietype tonen
+US20 – Navigeren naar opdracht
+
+User Story:
+Als inspecteur wil ik vanaf de opdracht naar navigatie kunnen gaan, zodat ik eenvoudig naar de klant kan rijden.
+
+Acceptatiecriteria:
+
+Navigatieknop
+Adres wordt doorgestuurd naar navigatie
+Google Maps/Waze kan worden geopend
+US21 – Opdracht starten
+
+User Story:
+Als inspecteur wil ik een opdracht kunnen starten, zodat de planner weet dat ik met de inspectie bezig ben.
+
+Acceptatiecriteria:
+
+Status verandert naar "Bezig"
+Starttijd wordt opgeslagen
+US22 – Opdracht afronden
+
+User Story:
+Als inspecteur wil ik een opdracht kunnen afronden, zodat de planning wordt bijgewerkt.
+
+Acceptatiecriteria:
+
+Opdracht kan worden afgerond
+Eindtijd wordt opgeslagen
+Status verandert naar "Afgerond"
+📊 DASHBOARD
+US23 – Planner dashboard
+
+User Story:
+Als planner wil ik een dashboard zien met de belangrijkste informatie, zodat ik snel overzicht heb.
+
+Dashboard bevat:
+
+Openstaande opdrachten
+Geplande opdrachten
+Afgeronde opdrachten
+Naderende deadlines
+Beschikbare inspecteurs
+Geplande routes
+US24 – Planningsoverzicht
+
+User Story:
+Als planner wil ik een overzicht per dag/week kunnen bekijken, zodat ik de planning makkelijk kan controleren.
+
+Acceptatiecriteria:
+
+Dagweergave
+Weekweergave
+Inspecteurs zichtbaar
+Opdrachten zichtbaar
+Tijdstippen zichtbaar
+🔐 ACCOUNT & BEHEER
+US25 – Inloggen
+
+User Story:
+Als gebruiker wil ik kunnen inloggen, zodat alleen bevoegde personen toegang hebben tot het systeem.
+
+Acceptatiecriteria:
+
+Loginformulier
+E-mail/gebruikersnaam
+Wachtwoord
+Foutmelding bij verkeerde gegevens
+Uitloggen
+US26 – Rollen en rechten
+
+User Story:
+Als beheerder wil ik verschillende gebruikersrollen kunnen instellen, zodat gebruikers alleen toegang hebben tot functies die ze nodig hebben.
+
+Rollen:
+
+Planner
+Inspecteur
+Beheerder
+🛠️ TECHNISCHE KAARTEN
+TECH01 – Projectstructuur opzetten
+ Laravel backend opzetten
+ Next.js frontend opzetten
+ Git repository instellen
+ README maken
+ .env instellen
+ Database koppelen
+TECH02 – Database maken
+ Migrations maken
+ Tabellen maken
+ Relationships maken
+ Seeders maken
+ Testdata toevoegen
+TECH03 – Laravel API opzetten
+ API routes
+ Controllers
+ Models
+ Validation
+ Error handling
+TECH04 – Next.js frontend opzetten
+ Layout
+ Navigatie
+ Dashboard
+ Componentstructuur
+ API-koppeling
+TECH05 – Kaart integreren
+ Leaflet installeren
+ OpenStreetMap gebruiken
+ Markers tonen
+ Route tekenen
+ Pop-ups toevoegen
+TECH06 – Route API onderzoeken
+ OpenRouteService onderzoeken
+ OSRM onderzoeken
+ Reistijden testen
+ API-limieten controleren
+ Definitieve keuze maken
+🧪 TESTEN
+TEST01 – Opdracht toevoegen testen
+ Geldig adres
+ Ongeldig adres
+ Verplichte velden
+ Inspectietype
+ Deadline
+TEST02 – Routeplanning testen
+ 1 inspecteur
+ Meerdere inspecteurs
+ 2 opdrachten
+ 10+ opdrachten
+ Tijdvensters
+ Verschillende inspectieduren
+TEST03 – Mobiele weergave testen
+ Telefoon
+ Tablet
+ Verschillende schermformaten
+ Navigatieknoppen
+TEST04 – Gebruikerstest met Klink
+ Planner laat systeem gebruiken
+ Feedback verzamelen
+ Problemen noteren
+ Verbeteringen verwerken
+📚 DOCUMENTATIE
+DOC01 – Functionele eisen
+
+Beschrijving van wat de applicatie moet kunnen.
+
+DOC02 – Technische eisen
+
+Beschrijving van Laravel, Next.js, database, API's en kaartfunctionaliteit.
+
+DOC03 – Database ERD
+
+Databaseontwerp bijwerken na het gesprek met Klink.
+
+DOC04 – API-documentatie
+
+Belangrijkste endpoints en gegevens beschrijven.
+
+DOC05 – Gebruikershandleiding
+
+Korte uitleg voor planner en inspecteur.
+
+DOC06 – Eindpresentatie
+Probleem
+Oplossing
+Demo
+Techniek
+Resultaat
+Reflectie
+⭐ Eerste sprint
+
+Ik zou niet alles tegelijk doen. Zet voor de eerste sprint deze kaarten op Te doen:
+
+TECH01 – Projectstructuur opzetten
+DOC01 – Functionele eisen
+US01 – Inspectieopdracht toevoegen
+US02 – Klanten en locaties beheren
+US07 – Inspectieopdrachten bekijken
+US04 – Inspecteurs beheren
+TECH02 – Database maken
+TECH03 – Laravel API opzetten
+TECH04 – Next.js frontend opzetten
+
+Daarna kunnen jullie de route-optimalisatie bouwen. Dat voorkomt dat jullie meteen met het moeilijkste onderdeel beginnen voordat de basis van de applicatie staat.

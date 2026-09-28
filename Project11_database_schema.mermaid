@@ -1,0 +1,110 @@
+erDiagram
+    KLANT ||--o{ LOCATIE : heeft
+    LOCATIE ||--o{ TANKINSTALLATIE : bevat
+    TANKINSTALLATIE ||--o{ OPDRACHT : krijgt
+    INSPECTIETYPE ||--o{ OPDRACHT : "is van type"
+    CERTIFICAAT ||--o{ INSPECTIETYPE : "vereist voor"
+    INSPECTEUR ||--o{ INSPECTEUR_CERTIFICAAT : bezit
+    CERTIFICAAT ||--o{ INSPECTEUR_CERTIFICAAT : "hoort bij"
+    INSPECTEUR ||--o{ ROUTE : rijdt
+    ROUTE ||--o{ ROUTESTOP : bestaat_uit
+    OPDRACHT ||--o| ROUTESTOP : "ingepland als"
+    INSPECTIETYPE ||--o{ INSPECTIETYPE_APPARATUUR : gebruikt
+    APPARATUUR ||--o{ INSPECTIETYPE_APPARATUUR : "nodig bij"
+
+    KLANT {
+        int id PK
+        string bedrijfsnaam
+        string contactpersoon
+        string email
+        string telefoon
+    }
+    LOCATIE {
+        int id PK
+        int klant_id FK
+        string adres
+        string postcode
+        string plaats
+        decimal latitude
+        decimal longitude
+        time open_van
+        time open_tot
+        string toegangsinstructies
+    }
+    TANKINSTALLATIE {
+        int id PK
+        int locatie_id FK
+        string soort "ondergronds of bovengronds"
+        int inhoud_liter
+        string product
+        date laatste_keuring
+        date volgende_keuring_uiterlijk
+    }
+    INSPECTIETYPE {
+        int id PK
+        string naam
+        string norm "bijv AS SIKB 6800"
+        int standaard_duur_min
+        int vereist_certificaat_id FK
+    }
+    OPDRACHT {
+        int id PK
+        int tankinstallatie_id FK
+        int inspectietype_id FK
+        string status "open, ingepland, uitgevoerd, geannuleerd"
+        date deadline
+        datetime tijdvenster_start
+        datetime tijdvenster_eind
+        int prioriteit
+        int geschatte_duur_min
+        bool installateur_nodig
+        string opmerkingen
+    }
+    INSPECTEUR {
+        int id PK
+        string naam
+        string email
+        string telefoon
+        string startadres
+        decimal start_lat
+        decimal start_lng
+        time werktijd_start
+        time werktijd_eind
+        bool actief
+    }
+    CERTIFICAAT {
+        int id PK
+        string naam "bijv IKT-2, besloten ruimte"
+    }
+    INSPECTEUR_CERTIFICAAT {
+        int inspecteur_id FK
+        int certificaat_id FK
+        date geldig_tot
+    }
+    APPARATUUR {
+        int id PK
+        string naam "bijv DCVG-set, drone"
+        int aantal_beschikbaar
+    }
+    INSPECTIETYPE_APPARATUUR {
+        int inspectietype_id FK
+        int apparatuur_id FK
+    }
+    ROUTE {
+        int id PK
+        int inspecteur_id FK
+        date datum
+        decimal totale_km
+        int totale_rijtijd_min
+        string status "concept of definitief"
+    }
+    ROUTESTOP {
+        int id PK
+        int route_id FK
+        int opdracht_id FK
+        int volgorde
+        datetime geplande_aankomst
+        datetime gepland_vertrek
+        datetime werkelijke_aankomst
+        datetime werkelijk_vertrek
+    }
