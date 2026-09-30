@@ -110,6 +110,8 @@
 
 ## 5. Database (eerste concept)
 
+> **Update na gesprek 23-09-2026:** het schema is bijgewerkt. Apparatuur is eruit (elke inspecteur heeft alles in zijn bus), inspectietype is vervangen door activiteiten (3–4 per station), en gebruiker/rol, wijzigingslog en notificatie zijn toegevoegd. Zie `Gesprek 1 - Marijn Klink (23-09-2026).md`.
+
 Zie het aparte bestand `Project11_database_schema.mermaid`. Kort samengevat:
 
 - **inspecteur** + **certificaat** (wie mag wat)

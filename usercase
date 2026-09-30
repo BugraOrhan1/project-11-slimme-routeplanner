@@ -6,10 +6,10 @@ Als planner wil ik een inspectieopdracht kunnen toevoegen, zodat deze ingepland 
 
 Acceptatiecriteria:
 
-Adres kan worden ingevoerd
+Adres/locatie (tankstation) kan worden ingevoerd
 Klant kan worden gekoppeld
-Inspectietype kan worden gekozen
-Datum/deadline kan worden ingevoerd
+Activiteiten (3–4 werkzaamheden per station) kunnen worden gekozen
+Deadline (opgelegd door de klant) kan worden ingevoerd
 Tijdsvenster kan worden ingevoerd
 Opdracht krijgt een status
 
@@ -20,6 +20,20 @@ Checklist:
  Formulier
  Validatie
  Testen
+US01b – Inspectieopdrachten importeren
+
+User Story:
+Als planner wil ik een lijst met inspectieopdrachten in één keer kunnen importeren (CSV/Excel), zodat ik het werk uit de jaarcontracten niet één voor één hoef in te voeren.
+
+Toelichting (gesprek 23-09):
+Klink werkt met jaarcontracten (Shell, BP, Total). Begin van het jaar is 80–90% van het werk bekend; Shell heeft bijv. ~1000 stations per jaar, in blokken van ~100 per maand.
+
+Acceptatiecriteria:
+
+Bestand (CSV/Excel) kan worden geüpload
+Opdrachten worden gekoppeld aan klant en locatie
+Maand/deadline per opdracht wordt overgenomen
+Foute regels worden gemeld
 US02 – Klanten en locaties beheren
 
 User Story:
@@ -33,26 +47,21 @@ Klant bekijken
 Locatie toevoegen
 Locatie wijzigen
 Locatie aan klant koppelen
-US03 – Inspectietypes beheren
+Aantal tanks per locatie vastleggen (bijv. diesel, benzine, Euro 98)
+US03 – Activiteiten (werkzaamheden) beheren
 
 User Story:
-Als planner wil ik verschillende inspectietypes kunnen beheren, zodat het systeem weet welke werkzaamheden uitgevoerd moeten worden.
+Als planner wil ik de soorten werkzaamheden (activiteiten) kunnen beheren, zodat het systeem weet welke werkzaamheden uitgevoerd moeten worden en hoe lang die duren.
 
-Voorbeelden:
-
-Jaarlijkse controle
-Tankkeuring
-Herkeuring
-Kathodische bescherming
-Ultrasoon onderzoek
-DCVG-meting
+Toelichting (gesprek 23-09):
+Per inspectie worden 3–4 soorten werkzaamheden gedaan; welke dat zijn verschilt per tankstation. Per type activiteit staat een vaste tijd. Marijn stuurt het overzicht van de activiteiten en tijden nog door.
 
 Acceptatiecriteria:
 
-Inspectietype toevoegen
-Inspectietype wijzigen
-Geschatte duur instellen
-Benodigde certificaten/apparatuur kunnen koppelen
+Activiteit toevoegen
+Activiteit wijzigen
+Vaste duur per activiteit instellen
+Benodigd certificaat kunnen koppelen
 US04 – Inspecteurs beheren
 
 User Story:
@@ -75,19 +84,11 @@ Acceptatiecriteria:
 Certificaat toevoegen
 Certificaat koppelen aan inspecteur
 Geldigheidsdatum opslaan
-Vereist certificaat koppelen aan inspectietype
+Vereist certificaat koppelen aan activiteit
 Ongeldige certificaten herkennen
-US06 – Apparatuur beheren
+US06 – Apparatuur beheren (VERVALLEN)
 
-User Story:
-Als planner wil ik beschikbare apparatuur kunnen beheren, zodat dezelfde apparatuur niet tegelijkertijd voor meerdere opdrachten wordt ingepland.
-
-Acceptatiecriteria:
-
-Apparatuur toevoegen
-Apparatuur wijzigen
-Apparatuur koppelen aan inspectietype
-Beschikbaarheid controleren
+Vervallen na gesprek 23-09: elke inspecteur heeft een eigen bus met alle apparatuur en heeft in principe altijd alles bij zich. Apparatuur hoeft dus niet ingepland te worden.
 US07 – Inspectieopdrachten bekijken
 
 User Story:
@@ -98,8 +99,10 @@ Acceptatiecriteria:
 Lijst met opdrachten
 Filter op datum
 Filter op status
-Filter op inspectietype
+Filter op activiteit
 Filter op klant
+Filter op regio
+Filter op maand
 Deadline zichtbaar
 US08 – Naderende keuringen tonen
 
@@ -112,6 +115,18 @@ Volgende keuringsdatum opslaan
 Keuringen sorteren op datum
 Naderende deadlines duidelijk tonen
 Verlopen keuringen tonen
+Alleen de deadline van de klant (geen eigen interne deadline)
+US08b – Melding bij naderende deadline
+
+User Story:
+Als planner of bedrijfsleider wil ik een melding krijgen als een deadline bijna verloopt, zodat de keuring niet te laat wordt ingepland.
+
+Acceptatiecriteria:
+
+Melding voor planner
+Melding voor bedrijfsleider
+Melding verschijnt een ingesteld aantal dagen voor de deadline (aantal nog navragen)
+Melding is te zien in de applicatie (eventueel ook per e-mail, nog navragen)
 🗺️ ROUTEPLANNING
 US09 – Beschikbare inspecteurs selecteren
 
@@ -132,7 +147,7 @@ Acceptatiecriteria:
 
 Opdrachten selecteren
 Opdrachten aan inspecteur koppelen
-Alleen geschikte opdrachten kunnen worden geselecteerd
+Alleen opdrachten waarvoor de inspecteur de juiste certificaten heeft kunnen worden gekoppeld
 US11 – Adressen omzetten naar coördinaten
 
 User Story:
@@ -156,7 +171,7 @@ Resultaat beschikbaar voor routeplanner
 US13 – Automatische route berekenen
 
 User Story:
-Als planner wil ik automatisch een optimale route kunnen laten berekenen, zodat inspecteurs zo efficiënt mogelijk kunnen rijden.
+Als planner wil ik dat het systeem een efficiënte route voorstelt, zodat inspecteurs zo efficiënt mogelijk kunnen rijden. Ik beslis zelf of de route wordt uitgevoerd.
 
 Acceptatiecriteria:
 
@@ -164,10 +179,14 @@ Meerdere opdrachten kunnen worden ingepland
 Systeem bepaalt volgorde
 Reistijd wordt meegenomen
 Route wordt per inspecteur berekend
+Stations van verschillende klanten in dezelfde regio worden gecombineerd
+Route is een voorstel (concept) dat de planner goedkeurt of afwijst
 US14 – Rekening houden met tijdvensters
 
 User Story:
 Als planner wil ik dat de route rekening houdt met afgesproken tijdvensters, zodat inspecteurs op tijd bij klanten aankomen.
+
+Let op: tijdvensters zijn in het gesprek van 23-09 niet besproken – eerst navragen of dit nodig is.
 
 Acceptatiecriteria:
 
@@ -182,7 +201,8 @@ Als planner wil ik dat de duur van een inspectie wordt meegenomen in de planning
 
 Acceptatiecriteria:
 
-Inspectieduur per type instellen
+Duur van een bezoek = som van de activiteiten op dat station
+Meer tanks op een locatie = langere duur
 Duur meenemen in planning
 Verwachte aankomsttijd tonen
 Verwachte vertrektijd tonen
@@ -209,6 +229,7 @@ Stops kunnen worden verplaatst
 Nieuwe volgorde wordt opgeslagen
 Reistijden worden opnieuw berekend
 Conflicten worden aangegeven
+Wijziging wordt vastgelegd in het wijzigingslog (zie US27)
 US18 – Route opslaan
 
 User Story:
@@ -221,6 +242,7 @@ Route krijgt inspecteur
 Stops worden opgeslagen
 Route kan later opnieuw worden geopend
 📱 INSPECTEUR
+Na gesprek 23-09: eerst een applicatie voor de computer. Elke inspecteur krijgt een eigen account met zijn eigen route. Een telefoon-app is een bonus (alleen als er tijd over is), daarom hebben US20–US22 een lage prioriteit.
 US19 – Dagplanning bekijken
 
 User Story:
@@ -233,7 +255,9 @@ Opdrachten in juiste volgorde
 Adres tonen
 Tijd tonen
 Inspectietype tonen
-US20 – Navigeren naar opdracht
+US20 – Navigeren naar opdracht (BONUS – alleen bij telefoon-app)
+
+Marijn heeft geen voorkeur; Google Maps wordt het meest gebruikt.
 
 User Story:
 Als inspecteur wil ik vanaf de opdracht naar navigatie kunnen gaan, zodat ik eenvoudig naar de klant kan rijden.
@@ -242,8 +266,8 @@ Acceptatiecriteria:
 
 Navigatieknop
 Adres wordt doorgestuurd naar navigatie
-Google Maps/Waze kan worden geopend
-US21 – Opdracht starten
+Google Maps (eventueel Waze) kan worden geopend
+US21 – Opdracht starten (lage prioriteit)
 
 User Story:
 Als inspecteur wil ik een opdracht kunnen starten, zodat de planner weet dat ik met de inspectie bezig ben.
@@ -252,7 +276,7 @@ Acceptatiecriteria:
 
 Status verandert naar "Bezig"
 Starttijd wordt opgeslagen
-US22 – Opdracht afronden
+US22 – Opdracht afronden (lage prioriteit)
 
 User Story:
 Als inspecteur wil ik een opdracht kunnen afronden, zodat de planning wordt bijgewerkt.
@@ -285,6 +309,7 @@ Acceptatiecriteria:
 
 Dagweergave
 Weekweergave
+Maandweergave (klanten leveren per maand een blok stations aan)
 Inspecteurs zichtbaar
 Opdrachten zichtbaar
 Tijdstippen zichtbaar
@@ -306,11 +331,46 @@ US26 – Rollen en rechten
 User Story:
 Als beheerder wil ik verschillende gebruikersrollen kunnen instellen, zodat gebruikers alleen toegang hebben tot functies die ze nodig hebben.
 
-Rollen:
+Rollen (na gesprek 23-09):
 
 Planner
-Inspecteur
+Bedrijfsleider
+Technisch manager
+Administratie
+Inspecteur (elk een eigen account met eigen route)
 Beheerder
+
+Klanten krijgen geen account.
+US27 – Wijzigingslog
+
+User Story:
+Als planner of bedrijfsleider wil ik kunnen zien wie wat heeft aangepast in de planning, zodat duidelijk is wie welke wijziging heeft gemaakt.
+
+Toelichting (gesprek 23-09):
+De planner zet de grote lijnen neer; administratie of een manager kijkt mee en past aan. Het moet zichtbaar zijn wie wat heeft aangepast.
+
+Acceptatiecriteria:
+
+Elke wijziging aan opdrachten en routes wordt opgeslagen
+Gebruiker, tijdstip en wijziging zijn zichtbaar
+Overzicht van wijzigingen per route/opdracht
+US28 – Huisstijl en weergave
+
+User Story:
+Als gebruiker wil ik dat de applicatie in de bedrijfskleuren van Klink is en een donkere en lichte modus heeft, zodat de applicatie herkenbaar en prettig in gebruik is.
+
+Acceptatiecriteria:
+
+Kleuren gebaseerd op de website van Klink
+Donkere modus
+Lichte modus
+US29 – Telefoon-app en live locatie (BONUS)
+
+User Story:
+Als planner wil ik de applicatie ook op de telefoon kunnen gebruiken en eventueel live zien waar inspecteurs zijn, zodat ik onderweg overzicht heb.
+
+Toelichting (gesprek 23-09):
+Niet per se nodig; alleen bouwen als er tijd over is. Niet de focus.
 🛠️ TECHNISCHE KAARTEN
 TECH01 – Projectstructuur opzetten
  Laravel backend opzetten
@@ -354,16 +414,18 @@ TEST01 – Opdracht toevoegen testen
  Geldig adres
  Ongeldig adres
  Verplichte velden
- Inspectietype
+ Activiteiten
  Deadline
 TEST02 – Routeplanning testen
  1 inspecteur
  Meerdere inspecteurs
  2 opdrachten
- 10+ opdrachten
+ 3–10 stations per dag (zoals in de praktijk)
  Tijdvensters
  Verschillende inspectieduren
-TEST03 – Mobiele weergave testen
+ Stations met meer tanks
+ Certificaten (inspecteur zonder juist certificaat wordt niet ingepland)
+TEST03 – Mobiele weergave testen (lage prioriteit – eerst computerapplicatie)
  Telefoon
  Tablet
  Verschillende schermformaten
@@ -384,7 +446,7 @@ Beschrijving van Laravel, Next.js, database, API's en kaartfunctionaliteit.
 
 DOC03 – Database ERD
 
-Databaseontwerp bijwerken na het gesprek met Klink.
+Databaseontwerp bijgewerkt na het gesprek met Klink (23-09): apparatuur eruit; activiteit, gebruiker, wijzigingslog en notificatie erbij.
 
 DOC04 – API-documentatie
 

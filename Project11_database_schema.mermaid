@@ -1,20 +1,23 @@
 erDiagram
     KLANT ||--o{ LOCATIE : heeft
     LOCATIE ||--o{ TANKINSTALLATIE : bevat
-    TANKINSTALLATIE ||--o{ OPDRACHT : krijgt
-    INSPECTIETYPE ||--o{ OPDRACHT : "is van type"
-    CERTIFICAAT ||--o{ INSPECTIETYPE : "vereist voor"
+    LOCATIE ||--o{ OPDRACHT : krijgt
+    OPDRACHT ||--o{ OPDRACHT_ACTIVITEIT : bestaat_uit
+    ACTIVITEIT ||--o{ OPDRACHT_ACTIVITEIT : "wordt uitgevoerd in"
+    CERTIFICAAT ||--o{ ACTIVITEIT : "vereist voor"
     INSPECTEUR ||--o{ INSPECTEUR_CERTIFICAAT : bezit
     CERTIFICAAT ||--o{ INSPECTEUR_CERTIFICAAT : "hoort bij"
+    GEBRUIKER ||--o| INSPECTEUR : "is (bij rol inspecteur)"
     INSPECTEUR ||--o{ ROUTE : rijdt
     ROUTE ||--o{ ROUTESTOP : bestaat_uit
     OPDRACHT ||--o| ROUTESTOP : "ingepland als"
-    INSPECTIETYPE ||--o{ INSPECTIETYPE_APPARATUUR : gebruikt
-    APPARATUUR ||--o{ INSPECTIETYPE_APPARATUUR : "nodig bij"
+    GEBRUIKER ||--o{ WIJZIGINGSLOG : "heeft gewijzigd"
+    GEBRUIKER ||--o{ NOTIFICATIE : ontvangt
+    OPDRACHT ||--o{ NOTIFICATIE : "gaat over"
 
     KLANT {
         int id PK
-        string bedrijfsnaam
+        string bedrijfsnaam "bijv Shell, BP, Total"
         string contactpersoon
         string email
         string telefoon
@@ -22,73 +25,75 @@ erDiagram
     LOCATIE {
         int id PK
         int klant_id FK
+        string naam "naam tankstation"
         string adres
         string postcode
         string plaats
+        string regio
         decimal latitude
         decimal longitude
-        time open_van
-        time open_tot
+        time open_van "navragen"
+        time open_tot "navragen"
         string toegangsinstructies
     }
     TANKINSTALLATIE {
         int id PK
         int locatie_id FK
+        string product "diesel, benzine, Euro 98"
         string soort "ondergronds of bovengronds"
         int inhoud_liter
-        string product
         date laatste_keuring
         date volgende_keuring_uiterlijk
     }
-    INSPECTIETYPE {
+    ACTIVITEIT {
         int id PK
-        string naam
-        string norm "bijv AS SIKB 6800"
-        int standaard_duur_min
+        string naam "werkzaamheid, lijst volgt van Marijn"
+        int standaard_duur_min "vaste tijd per type"
         int vereist_certificaat_id FK
     }
     OPDRACHT {
         int id PK
-        int tankinstallatie_id FK
-        int inspectietype_id FK
+        int locatie_id FK
         string status "open, ingepland, uitgevoerd, geannuleerd"
-        date deadline
-        datetime tijdvenster_start
-        datetime tijdvenster_eind
+        date plan_maand "maandblok van de klant"
+        date deadline "opgelegd door de klant"
+        datetime tijdvenster_start "navragen"
+        datetime tijdvenster_eind "navragen"
         int prioriteit
-        int geschatte_duur_min
-        bool installateur_nodig
+        int geschatte_duur_min "som activiteiten, afhankelijk van aantal tanks"
         string opmerkingen
     }
-    INSPECTEUR {
+    OPDRACHT_ACTIVITEIT {
+        int opdracht_id FK
+        int activiteit_id FK
+    }
+    GEBRUIKER {
         int id PK
         string naam
         string email
+        string wachtwoord_hash
+        string rol "planner, bedrijfsleider, technisch_manager, administratie, inspecteur, beheerder"
+    }
+    INSPECTEUR {
+        int id PK
+        int gebruiker_id FK
+        string naam
         string telefoon
-        string startadres
+        string startadres "navragen: kantoor of thuis"
         decimal start_lat
         decimal start_lng
-        time werktijd_start
-        time werktijd_eind
+        time werktijd_start "navragen"
+        time werktijd_eind "navragen"
         bool actief
     }
     CERTIFICAAT {
         int id PK
-        string naam "bijv IKT-2, besloten ruimte"
+        string naam
     }
     INSPECTEUR_CERTIFICAAT {
         int inspecteur_id FK
         int certificaat_id FK
         date geldig_tot
-    }
-    APPARATUUR {
-        int id PK
-        string naam "bijv DCVG-set, drone"
-        int aantal_beschikbaar
-    }
-    INSPECTIETYPE_APPARATUUR {
-        int inspectietype_id FK
-        int apparatuur_id FK
     }
     ROUTE {
         int id PK
@@ -96,7 +101,7 @@ erDiagram
         date datum
         decimal totale_km
         int totale_rijtijd_min
-        string status "concept of definitief"
+        string status "voorstel, goedgekeurd, afgewezen"
     }
     ROUTESTOP {
         int id PK
@@ -107,4 +112,20 @@ erDiagram
         datetime gepland_vertrek
         datetime werkelijke_aankomst
         datetime werkelijk_vertrek
+    }
+    WIJZIGINGSLOG {
+        int id PK
+        int gebruiker_id FK
+        string tabel "bijv route, opdracht"
+        int record_id
+        string wijziging
+        datetime tijdstip
+    }
+    NOTIFICATIE {
+        int id PK
+        int gebruiker_id FK "planner en bedrijfsleider"
+        int opdracht_id FK
+        string bericht "deadline verloopt bijna"
+        bool gelezen
+        datetime aangemaakt_op
     }
