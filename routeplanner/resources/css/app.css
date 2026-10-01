@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+
+@source '../**/*.blade.php';
+@source '../**/*.vue';
+@source '../**/*.js';
+
+/* Donkere modus via class "dark" op <html> (knop rechtsboven) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Huisstijl Klink – afgeleid van het logo en ingenieursbureauklink.nl:
+ * navy #003D52 (tekst/logo), donkerrood #980022 (knoppen), rood #E3261B (beeldmerk), Open Sans.
+ */
+@theme {
+    --font-sans: 'Open Sans', Helvetica, Arial, sans-serif;
+
+    --color-navy-50: #eef6f9;
+    --color-navy-100: #d5e8ef;
+    --color-navy-200: #a9cfdd;
+    --color-navy-300: #74aec3;
+    --color-navy-400: #3f8aa6;
+    --color-navy-500: #1d6a88;
+    --color-navy-600: #0b526d;
+    --color-navy-700: #003d52;
+    --color-navy-800: #022f40;
+    --color-navy-900: #03222e;
+    --color-navy-950: #021620;
+
+    --color-klink-50: #fdf1f2;
+    --color-klink-100: #fbdfe2;
+    --color-klink-200: #f5b8bf;
+    --color-klink-300: #ec8491;
+    --color-klink-400: #e3261b;
+    --color-klink-500: #c8102e;
+    --color-klink-600: #980022;
+    --color-klink-700: #7d001c;
+    --color-klink-800: #620016;
+    --color-klink-900: #4a0011;
+}
+
+/* Kleuren die per modus wisselen */
+:root {
+    --bg: #f3f6f8;
+    --surface: #ffffff;
+    --surface-2: #f7f9fb;
+    --text: #003d52;
+    --muted: #5b7481;
+    --border: #dde6eb;
+}
+
+.dark {
+    --bg: #03161f;
+    --surface: #072430;
+    --surface-2: #0a2e3c;
+    --text: #e5eef2;
+    --muted: #93adb9;
+    --border: #16404f;
+}
+
+@theme inline {
+    --color-bg: var(--bg);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-ink: var(--text);
+    --color-muted: var(--muted);
+    --color-line: var(--border);
+}
+
+@layer base {
+    html {
+        color-scheme: light;
+    }
+    html.dark {
+        color-scheme: dark;
+    }
+    body {
+        background: var(--bg);
+        color: var(--text);
+    }
+    h1, h2, h3 {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+}
+
+@layer components {
+    .card {
+        @apply rounded-lg border border-line bg-surface shadow-sm;
+    }
+    .card-header {
+        @apply flex items-center justify-between gap-3 border-b border-line px-5 py-3.5;
+    }
+    .card-title {
+        @apply text-base font-bold;
+    }
+
+    /* Knoppen zoals op de website: donkerrood, afgeronde hoeken van 5px */
+    .btn {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-[5px] px-4 py-2 text-sm font-semibold transition
+            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-klink-400 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+    .btn-primary {
+        @apply bg-klink-600 text-white hover:bg-klink-700;
+    }
+    .btn-secondary {
+        @apply bg-navy-700 text-white hover:bg-navy-800 dark:bg-navy-500 dark:hover:bg-navy-400;
+    }
+    .btn-ghost {
+        @apply border border-line bg-surface text-ink hover:bg-surface-2;
+    }
+    .btn-danger {
+        @apply border border-klink-200 bg-surface text-klink-600 hover:bg-klink-50 dark:border-klink-800 dark:text-klink-300 dark:hover:bg-klink-900/40;
+    }
+    .btn-sm {
+        @apply px-2.5 py-1 text-xs;
+    }
+
+    .label {
+        @apply mb-1 block text-sm font-semibold;
+    }
+    .input {
+        @apply block w-full rounded-[5px] border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted
+            focus:border-navy-400 focus:ring-2 focus:ring-navy-200 focus:outline-none dark:focus:ring-navy-600;
+    }
+    .error {
+        @apply mt-1 text-xs font-medium text-klink-600 dark:text-klink-300;
+    }
+
+    .table {
+        @apply w-full text-left text-sm;
+    }
+    .table th {
+        @apply border-b border-line bg-surface-2 px-4 py-2.5 text-xs font-bold tracking-wide text-muted uppercase;
+    }
+    .table td {
+        @apply border-b border-line px-4 py-3 align-top;
+    }
+    .table tbody tr:last-child td {
+        @apply border-b-0;
+    }
+    .table tbody tr {
+        @apply transition-colors hover:bg-surface-2;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold whitespace-nowrap;
+    }
+    .link {
+        @apply font-semibold text-klink-600 hover:underline dark:text-klink-300;
+    }
+}
+
+/* Leaflet in donkere modus: kaart iets dimmen */
+.dark .leaflet-tile-pane {
+    filter: brightness(0.75) contrast(1.1) saturate(0.8);
+}
+.leaflet-container {
+    font-family: inherit;
+    background: var(--surface-2);
+}
+.leaflet-popup-content {
+    color: #003d52;
+}
