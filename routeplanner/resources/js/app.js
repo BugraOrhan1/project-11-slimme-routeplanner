@@ -60,6 +60,7 @@ function componentFor(path) {
     if (path.startsWith('/opdrachten/importeren')) return pages['./Pages/Assignments/Import.vue'];
     if (path.startsWith('/opdrachten/nieuw') || path.match(/^\/opdrachten\/\d+\/bewerken/)) return pages['./Pages/Assignments/Form.vue'];
     if (path.startsWith('/opdrachten')) return pages['./Pages/Assignments/Index.vue'];
+    if (path.match(/^\/klanten\/\d+\/locaties\/nieuw/) || path.match(/^\/locaties\/\d+\/bewerken/)) return pages['./Pages/Locations/Form.vue'];
     if (path.startsWith('/klanten/') && !path.endsWith('/klanten')) return pages['./Pages/Customers/Show.vue'];
     if (path.startsWith('/klanten')) return pages['./Pages/Customers/Index.vue'];
     if (path.startsWith('/inspecteurs/nieuw') || path.match(/^\/inspecteurs\/\d+\/bewerken/)) return pages['./Pages/Inspectors/Form.vue'];

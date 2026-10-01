@@ -30,6 +30,7 @@ export const getPageProps = (path) => {
     if (path.startsWith('/opdrachten/importeren')) return { activities };
     if (path.startsWith('/inspecteurs/nieuw') || path.match(/^\/inspecteurs\/\d+\/bewerken/)) return { inspector: null, certificates, users: [], office: {} };
     if (path.startsWith('/opdrachten')) return { assignments: paginated(assignments), filters: { search: '', status: '', customer: '', activity: '', region: '', month: '', sort: 'deadline' }, options: { statuses: ['open', 'ingepland', 'uitgevoerd'], customers, activities, regions: ['Utrecht', 'Gelderland'] } };
+    if (path.match(/^\/klanten\/\d+\/locaties\/nieuw/) || path.match(/^\/locaties\/\d+\/bewerken/)) return { customer: customers[0], location: null, products: ['Diesel', 'Euro 95', 'Euro 98'] };
     if (path.startsWith('/klanten/') && !path.endsWith('/klanten')) return { customer: customers[0] };
     if (path.startsWith('/klanten')) return { customers };
     if (path.startsWith('/inspecteurs')) return { inspectors, certificates, users: [] };
