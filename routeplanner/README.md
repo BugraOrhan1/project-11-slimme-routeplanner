@@ -43,14 +43,14 @@ Staat er een virusscanner of schoolnetwerk tussen dat HTTPS inspecteert, voeg da
 
 Wachtwoord voor alle accounts: `wachtwoord`
 
-| Rol | E-mailadres |
-|---|---|
-| Planner | planner@klink.test |
-| Bedrijfsleider | bedrijfsleider@klink.test |
-| Technisch manager | manager@klink.test |
-| Administratie | administratie@klink.test |
-| Beheerder | beheerder@klink.test |
-| Inspecteur | jan@klink.test, sanne@klink.test, mehmet@klink.test, pieter@klink.test, lisa@klink.test |
+| Rol               | E-mailadres                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Planner           | planner@klink.test                                                                      |
+| Bedrijfsleider    | bedrijfsleider@klink.test                                                               |
+| Technisch manager | manager@klink.test                                                                      |
+| Administratie     | administratie@klink.test                                                                |
+| Beheerder         | beheerder@klink.test                                                                    |
+| Inspecteur        | jan@klink.test, sanne@klink.test, mehmet@klink.test, pieter@klink.test, lisa@klink.test |
 
 De testdata is fictief (adressen heten "Voorbeeldweg"). Mehmet heeft met opzet een **verlopen** certificaat
 voor kathodische bescherming, zodat je ziet dat hij daar niet voor wordt ingepland.
@@ -63,25 +63,25 @@ php artisan test
 
 ## Wat zit erin (gesprek 23-09-2026 + user stories)
 
-| Uit het gesprek met Marijn | Waar in de app | User story |
-|---|---|---|
-| Eerst een applicatie voor de computer | Webapp, desktop-layout | – |
-| Planner, bedrijfsleider, technisch manager, administratie; geen klantaccounts | Rollen, *Gebruikers* | US25, US26 |
-| Elke inspecteur een eigen account met zijn route | *Mijn route* (inspecteur ziet alleen die pagina) | US19 |
-| Zien wie wat heeft aangepast | *Wijzigingen* (automatisch log van elke wijziging) | US27 |
-| App doet suggesties, planner beslist | *Routeplanner*: voorstel → goedkeuren / afwijzen / aanpassen | US13, US17 |
-| Stations van verschillende klanten in dezelfde regio combineren | Algoritme in `app/Services/RoutePlanner.php` | US13 |
-| 3–4 werkzaamheden per station, vaste tijd per activiteit | *Werkzaamheden*; duur = som, optioneel per tank | US03, US15 |
-| Meerdere tanks per station, dan duurt het langer | Tanks per locatie, activiteit "per tank" | US02, US15 |
-| Shell/BP/Total, ~1000 stations/jaar in maandblokken | Klanten, maandblok per opdracht, **CSV-import** | US01b, US07 |
-| Alleen de deadline van de klant | Eén deadline per opdracht | US08 |
-| Certificaat per inspecteur, alleen inplannen als hij het mag | Certificaten met geldigheidsdatum; planner kijkt ernaar | US05 |
-| Meestal alleen, 3–10 stations per dag | Eén inspecteur per route; werkdag begrenst het aantal | – |
-| Apparatuur: iedereen heeft alles in de bus | Geen apparatuurbeheer (US06 vervallen) | – |
-| Melding als deadline bijna verloopt → planner + bedrijfsleider | Bel rechtsboven + *Meldingen*, `php artisan deadlines:check` | US08b |
-| Planning verandert zelden op de dag zelf | Stop verplaatsen/verwijderen/toevoegen op de routepagina | US17 |
-| Live locatie / Google Maps alleen als bonus | Knop *Google Maps* bij elke stop in *Mijn route* | US20 |
-| Bedrijfskleuren, donker/licht | Klink-huisstijl + wisselknop rechtsboven | US28 |
+| Uit het gesprek met Marijn                                                    | Waar in de app                                                  | User story  |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------- | ----------- |
+| Eerst een applicatie voor de computer                                         | Webapp, desktop-layout                                          | –          |
+| Planner, bedrijfsleider, technisch manager, administratie; geen klantaccounts | Rollen,*Gebruikers*                                           | US25, US26  |
+| Elke inspecteur een eigen account met zijn route                              | *Mijn route* (inspecteur ziet alleen die pagina)              | US19        |
+| Zien wie wat heeft aangepast                                                  | *Wijzigingen* (automatisch log van elke wijziging)            | US27        |
+| App doet suggesties, planner beslist                                          | *Routeplanner*: voorstel → goedkeuren / afwijzen / aanpassen | US13, US17  |
+| Stations van verschillende klanten in dezelfde regio combineren               | Algoritme in`app/Services/RoutePlanner.php`                   | US13        |
+| 3–4 werkzaamheden per station, vaste tijd per activiteit                     | *Werkzaamheden*; duur = som, optioneel per tank               | US03, US15  |
+| Meerdere tanks per station, dan duurt het langer                              | Tanks per locatie, activiteit "per tank"                        | US02, US15  |
+| Shell/BP/Total, ~1000 stations/jaar in maandblokken                           | Klanten, maandblok per opdracht,**CSV-import**            | US01b, US07 |
+| Alleen de deadline van de klant                                               | Eén deadline per opdracht                                      | US08        |
+| Certificaat per inspecteur, alleen inplannen als hij het mag                  | Certificaten met geldigheidsdatum; planner kijkt ernaar         | US05        |
+| Meestal alleen, 3–10 stations per dag                                        | Eén inspecteur per route; werkdag begrenst het aantal          | –          |
+| Apparatuur: iedereen heeft alles in de bus                                    | Geen apparatuurbeheer (US06 vervallen)                          | –          |
+| Melding als deadline bijna verloopt → planner + bedrijfsleider               | Bel rechtsboven +*Meldingen*, `php artisan deadlines:check` | US08b       |
+| Planning verandert zelden op de dag zelf                                      | Stop verplaatsen/verwijderen/toevoegen op de routepagina        | US17        |
+| Live locatie / Google Maps alleen als bonus                                   | Knop*Google Maps* bij elke stop in *Mijn route*             | US20        |
+| Bedrijfskleuren, donker/licht                                                 | Klink-huisstijl + wisselknop rechtsboven                        | US28        |
 
 ### Hoe het routevoorstel werkt
 

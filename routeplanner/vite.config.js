@@ -1,14 +1,10 @@
 import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
     plugins: [
-        laravel({
-            input: ['resources/js/app.js'],
-            refresh: true,
-        }),
         vue({
             template: {
                 transformAssetUrls: { base: null, includeAbsolute: false },
@@ -16,6 +12,11 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    resolve: {
+        alias: {
+            '@inertiajs/vue3': fileURLToPath(new URL('./resources/js/inertia.js', import.meta.url)),
+        },
+    },
     server: {
         watch: {
             ignored: ['**/storage/framework/views/**'],
