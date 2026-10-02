@@ -24,6 +24,9 @@ class User extends Authenticatable
         'beheerder' => 'Beheerder',
     ];
 
+    /** Rollen met toegang tot de kantooromgeving. */
+    public const OFFICE_ROLES = ['planner', 'bedrijfsleider', 'technisch_manager', 'administratie', 'beheerder'];
+
     /** Deze rollen krijgen een melding als een deadline bijna verloopt. */
     public const ALERT_ROLES = ['planner', 'bedrijfsleider'];
 
@@ -55,6 +58,11 @@ class User extends Authenticatable
     public function isInspector(): bool
     {
         return $this->role === 'inspecteur';
+    }
+
+    public function canAccessOffice(): bool
+    {
+        return in_array($this->role, self::OFFICE_ROLES, true);
     }
 
     public function canManageUsers(): bool

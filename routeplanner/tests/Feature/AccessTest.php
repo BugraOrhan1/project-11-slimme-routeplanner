@@ -43,6 +43,13 @@ class AccessTest extends TestCase
         $this->get('/mijn-route')->assertOk();
     }
 
+    public function test_inspector_cannot_access_user_management(): void
+    {
+        $this->actingAs($this->user('inspecteur'))
+            ->get('/gebruikers')
+            ->assertRedirect(route('my-route'));
+    }
+
     public function test_office_roles_can_use_planning_pages(): void
     {
         foreach (['planner', 'bedrijfsleider', 'technisch_manager', 'administratie', 'beheerder'] as $role) {
@@ -55,6 +62,11 @@ class AccessTest extends TestCase
         $this->actingAs($this->user('planner'))->get('/gebruikers')->assertRedirect(route('dashboard'));
         $this->actingAs($this->user('bedrijfsleider'))->get('/gebruikers')->assertOk();
         $this->actingAs($this->user('beheerder'))->get('/gebruikers')->assertOk();
+    }
+
+    public function test_unknown_role_cannot_access_office(): void
+    {
+        $this->actingAs($this->user('onbekend'))->get('/')->assertRedirect(route('dashboard'));
     }
 
     public function test_inspector_cannot_finish_stop_of_someone_else(): void

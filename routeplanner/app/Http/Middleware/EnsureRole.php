@@ -17,7 +17,7 @@ class EnsureRole
         $user = $request->user();
 
         $allowed = in_array('office', $roles, true)
-            ? ! $user->isInspector()
+            ? $user->canAccessOffice()
             : in_array($user->role, $roles, true);
 
         if (! $allowed) {
